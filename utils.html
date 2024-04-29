@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Utils &#8212; BenchBench  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Measures" href="measures.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-benchbench.utils">
+<span id="utils"></span><h1>Utils<a class="headerlink" href="#module-benchbench.utils" title="Link to this heading">¶</a></h1>
+<section id="module-benchbench.utils.base">
+<span id="benchbench-utils-base"></span><h2>benchbench.utils.base<a class="headerlink" href="#module-benchbench.utils.base" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.base.get_combinations">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.base.</span></span><span class="sig-name descname"><span class="pre">get_combinations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/base.html#get_combinations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.base.get_combinations" title="Link to this definition">¶</a></dt>
+<dd><p>Generate all subsets of size k from set s.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<em>list</em>) – List of elements to get combinations from.</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – Size of each combination.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of combinations, where each combination is represented as a list.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.base.is_int">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.base.</span></span><span class="sig-name descname"><span class="pre">is_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/base.html#is_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.base.is_int" title="Link to this definition">¶</a></dt>
+<dd><p>Check if a string can be converted to an integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>str</em>) – Input string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if x can be converted to an integer, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.base.is_number">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.base.</span></span><span class="sig-name descname"><span class="pre">is_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/base.html#is_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.base.is_number" title="Link to this definition">¶</a></dt>
+<dd><p>Check if a string can be converted to a number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – Input string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if s can be converted to a number, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.base.rankdata">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.base.</span></span><span class="sig-name descname"><span class="pre">rankdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'average'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/base.html#rankdata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.base.rankdata" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-benchbench.utils.metric">
+<span id="benchbench-utils-metric"></span><h2>benchbench.utils.metric<a class="headerlink" href="#module-benchbench.utils.metric" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.get_kendall_tau">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">get_kendall_tau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_rank</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#get_kendall_tau"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.get_kendall_tau" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate Kendall’s Tau for two rankings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_rank</strong> (<em>np.array</em>) – new ranking</p></li>
+<li><p><strong>old_rank</strong> (<em>np.array</em>) – old ranking</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>float: Kendall’s Tau
+float: p-value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.get_kendall_w">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">get_kendall_w</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rankings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#get_kendall_w"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.get_kendall_w" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate Kendall’s W for a list of rankings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rankings</strong> (<em>list</em>) – a list of rankings</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Kendall’s W</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.get_order_diff">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">get_order_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#get_order_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.get_order_diff" title="Link to this definition">¶</a></dt>
+<dd><p>[Legacy code] Get the difference between two orders.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.get_order_variance">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">get_order_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_new_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#get_order_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.get_order_variance" title="Link to this definition">¶</a></dt>
+<dd><p>[Legacy code] Get the variance of all orders.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.get_rank_diff">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">get_rank_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#get_rank_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.get_rank_diff" title="Link to this definition">¶</a></dt>
+<dd><p>Get the difference between two ranks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_rank</strong> (<em>np.array</em>) – new ranking</p></li>
+<li><p><strong>old_rank</strong> (<em>np.array</em>) – old ranking</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Kendall’s Tau
+float: MRC (max rank change)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.get_rank_variance">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">get_rank_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_new_rank</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#get_rank_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.get_rank_variance" title="Link to this definition">¶</a></dt>
+<dd><p>Get the variance of all ranks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>all_new_rank</strong> (<em>list</em>) – a list of all rankings</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>w (Kendall’s W)
+float: max_MRC (the max MRC over every pair of rankings)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.order2rank">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">order2rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#order2rank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.order2rank" title="Link to this definition">¶</a></dt>
+<dd><p>[Legacy code] Convert an order to a rank.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="benchbench.utils.metric.rank2order">
+<span class="sig-prename descclassname"><span class="pre">benchbench.utils.metric.</span></span><span class="sig-name descname"><span class="pre">rank2order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rank</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/metric.html#rank2order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.metric.rank2order" title="Link to this definition">¶</a></dt>
+<dd><p>[Legacy code] Convert a rank to an order.</p>
+</dd></dl>
+
+</section>
+<section id="module-benchbench.utils.win_rate">
+<span id="benchbench-utils-win-rate"></span><h2>benchbench.utils.win_rate<a class="headerlink" href="#module-benchbench.utils.win_rate" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="benchbench.utils.win_rate.WinningRate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchbench.utils.win_rate.</span></span><span class="sig-name descname"><span class="pre">WinningRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/win_rate.html#WinningRate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.win_rate.WinningRate" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="benchbench.utils.win_rate.WinningRate.get_winning_rate">
+<span class="sig-name descname"><span class="pre">get_winning_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/benchbench/utils/win_rate.html#WinningRate.get_winning_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#benchbench.utils.win_rate.WinningRate.get_winning_rate" title="Link to this definition">¶</a></dt>
+<dd><p>Get the winning rate of the selected models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_indices</strong> (<em>list</em>) – Indices of the selected models.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The winning rate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BenchBench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="measures.html">Measures</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-benchbench.utils.base">benchbench.utils.base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-benchbench.utils.metric">benchbench.utils.metric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-benchbench.utils.win_rate">benchbench.utils.win_rate</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="measures.html" title="previous chapter">Measures</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Guanhua.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

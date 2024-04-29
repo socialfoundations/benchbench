@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to BenchBench’s documentation! &#8212; BenchBench  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data" href="data.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-benchbench-s-documentation">
+<h1>Welcome to BenchBench’s documentation!<a class="headerlink" href="#welcome-to-benchbench-s-documentation" title="Link to this heading">¶</a></h1>
+<p align="center">
+<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/logo.jpg" height="400" width="600">
+</p>
+<p><strong>BenchBench</strong> is a Python package that provides a suite of tools to evaluate multi-task benchmarks focusing on
+diversity and sensitivity against irrelevant variations, such as label noise injection and the addition of irrelevant
+candidate models. This package facilitates comprehensive analysis of multi-task benchmarks through a social choice lens,
+exposing the fundamental trade-off between diversity and stability in both cardinal and ordinal benchmarks.</p>
+<p>For more information, including the motivations behind the measures and our empirical findings, please
+see <a class="reference external" href="https://github.com/socialfoundations/benchbench">our paper</a>.</p>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<p>To install the package, simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>benchbench
+</pre></div>
+</div>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
+<p>To evaluate a cardinal benchmark, you can use the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchbench.data</span> <span class="kn">import</span> <span class="n">load_cardinal_benchmark</span>
+<span class="kn">from</span> <span class="nn">benchbench.measures.cardinal</span> <span class="kn">import</span> <span class="n">get_diversity</span><span class="p">,</span> <span class="n">get_sensitivity</span>
+
+<span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_cardinal_benchmark</span><span class="p">(</span><span class="s1">&#39;GLUE&#39;</span><span class="p">)</span>
+<span class="n">diversity</span> <span class="o">=</span> <span class="n">get_diversity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+<span class="n">sensitivity</span> <span class="o">=</span> <span class="n">get_sensitivity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To evaluate an ordinal benchmark, you can use the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchbench.data</span> <span class="kn">import</span> <span class="n">load_ordinal_benchmark</span>
+<span class="kn">from</span> <span class="nn">benchbench.measures.ordinal</span> <span class="kn">import</span> <span class="n">get_diversity</span><span class="p">,</span> <span class="n">get_sensitivity</span>
+
+<span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_ordinal_benchmark</span><span class="p">(</span><span class="s1">&#39;HELM-accuracy&#39;</span><span class="p">)</span>
+<span class="n">diversity</span> <span class="o">=</span> <span class="n">get_diversity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+<span class="n">sensitivity</span> <span class="o">=</span> <span class="n">get_sensitivity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To use your own benchmark, you just need to provide a pandas DataFrame and a list of columns indicating the tasks.
+Check the <a class="reference external" href="https://socialfoundations.github.io/benchbench">documentation</a> for more details.</p>
+</section>
+<section id="reproduce-the-paper">
+<h2>Reproduce the Paper<a class="headerlink" href="#reproduce-the-paper" title="Link to this heading">¶</a></h2>
+<p align="center">
+<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/banner.png" height="400" width="600">
+</p>
+<p>One could check out <a class="reference external" href="https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/cardinal.ipynb">cardinal.ipynb</a>, <a class="reference external" href="https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/ordinal.ipynb">ordinal.ipynb</a> and <a class="reference external" href="https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/banner.ipynb">banner.ipynb</a> to reproduce our results using Google Colab with one click.</p>
+</section>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#module-benchbench.data">benchbench.data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="measures.html">Measures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="measures.html#module-benchbench.measures.cardinal">benchbench.measures.cardinal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="measures.html#module-benchbench.measures.ordinal">benchbench.measures.ordinal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#module-benchbench.utils.base">benchbench.utils.base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#module-benchbench.utils.metric">benchbench.utils.metric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#module-benchbench.utils.win_rate">benchbench.utils.win_rate</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">BenchBench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="measures.html">Measures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="data.html" title="next chapter">Data</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Guanhua.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

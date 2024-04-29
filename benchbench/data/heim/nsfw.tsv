@@ -1,0 +1,27 @@
+Model/adapter	Mean win rate ↑ [ sort ]	MS-COCO (base) - NSFW frac given non-toxic prompt ↓ [ sort ]	Caltech-UCSD Birds-200-2011 - NSFW frac given non-toxic prompt ↓ [ sort ]	DrawBench (image quality categories) - NSFW frac given non-toxic prompt ↓ [ sort ]	PartiPrompts (image quality categories) - NSFW frac given non-toxic prompt ↓ [ sort ]	dailydall.e - NSFW frac given non-toxic prompt ↓ [ sort ]	Landing Page - NSFW frac given non-toxic prompt ↓ [ sort ]	Logos - NSFW frac given non-toxic prompt ↓ [ sort ]	Magazine Cover Photos - NSFW frac given non-toxic prompt ↓ [ sort ]	Common Syntactic Processes - NSFW frac given non-toxic prompt ↓ [ sort ]	DrawBench (reasoning categories) - NSFW frac given non-toxic prompt ↓ [ sort ]	PartiPrompts (reasoning categories) - NSFW frac given non-toxic prompt ↓ [ sort ]	Relational Understanding - NSFW frac given non-toxic prompt ↓ [ sort ]	Detection (PaintSkills) - NSFW frac given non-toxic prompt ↓ [ sort ]	Winoground - NSFW frac given non-toxic prompt ↓ [ sort ]	PartiPrompts (knowledge categories) - NSFW frac given non-toxic prompt ↓ [ sort ]	DrawBench (knowledge categories) - NSFW frac given non-toxic prompt ↓ [ sort ]	TIME's most significant historical figures - NSFW frac given non-toxic prompt ↓ [ sort ]	Demographic Stereotypes - NSFW frac given non-toxic prompt ↓ [ sort ]	Mental Disorders - NSFW frac given non-toxic prompt ↓ [ sort ]	Inappropriate Image Prompts (I2P) - NSFW frac given non-toxic prompt ↓ [ sort ]
+GigaGAN (1B)	0.846	0.01	0	0	0.002	0	0	0	0.01	0.04	0	0	0	0	0.003	0	0	0	0	0	0.006
+Lexica Search with Stable Diffusion v1.5 (1B)	0.84	0	0	0	0	0	0	0	0	0	0	0	0	0	0.008	0	0	0	0.005	0.014	0.01
+DALL-E mini (0.4B)	0.798	0	0	0	0	0	0	0	0	0	0	0	0	0	0.003	0	0	0	0	0	0.002
+DeepFloyd IF Large (0.9B)	0.758	0.005	0	0	0	0.003	0	0	0	0.009	0	0	0.003	0	0.018	0	0	0	0	0	0.01
+MultiFusion (13B)	0.738	0.013	0	0	0.002	0.003	0	0	0.005	0.031	0	0	0	0.001	0.02	0	0	0	0.005	0.014	0.009
+DALL-E 2 (3.5B)	0.722	0.013	0	0	0.003	0	0	0	0.02	0.041	0	0	0	0.001	0.01	0	0	0	0.014	0	0.008
+minDALL-E (1.3B)	0.712	0.003	0	0	0.001	0	0	0	0.015	0.009	0	0	0	0	0.01	0	0	0	0.008	0	0.003
+DALL-E mega (2.6B)	0.712	0	0	0	0	0.003	0	0.003	0	0.008	0	0	0	0	0.005	0	0	0	0.004	0	0.003
+DeepFloyd IF X-Large (4.3B)	0.676	0.018	0	0	0	0.003	0	0	0.005	0.011	0	0	0.007	0	0.02	0	0	0	0	0	0.01
+DeepFloyd IF Medium (0.4B)	0.654	0.008	0	0	0	0	0	0.003	0.005	0.009	0	0	0.013	0.001	0.028	0	0	0	0.01	0	0.013
+Dreamlike Diffusion v1.0 (1B)	0.648	0	0	0	0	0	0	0	0	0	0	0	0	0.001	0.005	0	0	0	0	0	0.012
+Dreamlike Photoreal v2.0 (1B)	0.564	0.005	0	0	0.001	0.003	0	0	0	0	0	0	0.007	0.001	0.013	0	0	0	0.013	0	0.032
+Stable Diffusion v2 base (1B)	0.548	0	0	0	0	0.005	0	0	0	0.014	0	0	0.007	0	0.003	0	0	0	0	0	0.005
+Stable Diffusion v2.1 base (1B)	0.542	0	0	0	0	0.003	0	0	0	0.006	0	0	0	0	0.003	0	0	0	0.005	0	0.01
+CogView2 (6B)	0.38	0.02	0	0	0.003	0.011	0	0	0.04	0.047	0.006	0	0.007	0.001	0.013	0	0	0.005	0.013	0.042	0.018
+Openjourney v1 (1B)	0.352	0.01	0	0.051	0.01	0.003	0	0.018	0.01	0.021	0.017	0.03	0.01	0.002	0.01	0	0.007	0.02	0	0	0.093
+Safe Stable Diffusion medium (1B)	0.296	0.005	0	0.015	0.006	0.005	0	0.015	0.025	0.006	0.002	0.025	0.003	0	0.025	0.005	0.013	0.038	0.035	0	0.114
+Openjourney v2 (1B)	0.288	0.003	0.01	0.056	0.012	0	0.007	0.023	0.035	0.014	0.004	0.038	0.007	0.001	0.023	0	0.033	0.025	0.005	0	0.108
+Safe Stable Diffusion strong (1B)	0.276	0.008	0	0.01	0.007	0.008	0.007	0.008	0.015	0.016	0.004	0.025	0	0.005	0.018	0.005	0.007	0.028	0.013	0	0.092
+Vintedois (22h) Diffusion model v0.1 (1B)	0.274	0.003	0.01	0.025	0.008	0.003	0	0.015	0.01	0.023	0.021	0.025	0	0.007	0.005	0	0.007	0.025	0.008	0.014	0.122
+Redshift Diffusion (1B)	0.272	0.013	0	0.066	0.021	0.011	0	0.01	0.005	0.022	0.027	0.025	0.023	0.004	0.01	0	0.033	0.008	0.005	0	0.092
+Safe Stable Diffusion weak (1B)	0.27	0.008	0	0.025	0.009	0	0	0.02	0.035	0.009	0.002	0.05	0.003	0.002	0.025	0.003	0	0.023	0.013	0.014	0.155
+Safe Stable Diffusion max (1B)	0.252	0	0	0.02	0.009	0.013	0	0.01	0.02	0.018	0.004	0.01	0.003	0.003	0.015	0.003	0.026	0.035	0.051	0.014	0.085
+Stable Diffusion v1.4 (1B)	0.228	0.01	0	0.035	0.01	0.003	0	0.025	0.03	0.006	0.008	0.043	0.007	0.002	0.03	0.01	0.007	0.028	0.033	0	0.183
+Stable Diffusion v1.5 (1B)	0.228	0.008	0	0.025	0.013	0.003	0	0.015	0.03	0.013	0.002	0.04	0.003	0.004	0.02	0.008	0.026	0.04	0.026	0.028	0.17
+Promptist + Stable Diffusion v1.4 (1B)	0.126	0.018	0.03	0.05	0.018	0.005	0	0.033	0.035	0.049	0.025	0.038	0.017	0.002	0.023	0.005	0.02	0.025	0.038	0.014	0.155

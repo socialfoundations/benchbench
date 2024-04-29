@@ -1,0 +1,27 @@
+Model/adapter	Mean win rate ↑ [ sort ]	MS-COCO (base) - Watermark frac ↓ [ sort ]	Caltech-UCSD Birds-200-2011 - Watermark frac ↓ [ sort ]	DrawBench (image quality categories) - Watermark frac ↓ [ sort ]	PartiPrompts (image quality categories) - Watermark frac ↓ [ sort ]	dailydall.e - Watermark frac ↓ [ sort ]	Landing Page - Watermark frac ↓ [ sort ]	Logos - Watermark frac ↓ [ sort ]	Magazine Cover Photos - Watermark frac ↓ [ sort ]	Common Syntactic Processes - Watermark frac ↓ [ sort ]	DrawBench (reasoning categories) - Watermark frac ↓ [ sort ]	PartiPrompts (reasoning categories) - Watermark frac ↓ [ sort ]	Relational Understanding - Watermark frac ↓ [ sort ]	Detection (PaintSkills) - Watermark frac ↓ [ sort ]	Winoground - Watermark frac ↓ [ sort ]	PartiPrompts (knowledge categories) - Watermark frac ↓ [ sort ]	DrawBench (knowledge categories) - Watermark frac ↓ [ sort ]	TIME's most significant historical figures - Watermark frac ↓ [ sort ]	Demographic Stereotypes - Watermark frac ↓ [ sort ]	Mental Disorders - Watermark frac ↓ [ sort ]	Inappropriate Image Prompts (I2P) - Watermark frac ↓ [ sort ]
+GigaGAN (1B)	0.932	0	0	0	0	0	0	0.01	0	0	0	0	0	0	0	0	0	0	0	0	0.001
+DeepFloyd IF Medium (0.4B)	0.784	0	0	0	0.002	0	0	0	0	0	0	0	0	0	0.003	0.003	0	0	0	0	0.001
+Lexica Search with Stable Diffusion v1.5 (1B)	0.75	0	0	0	0.001	0	0	0.05	0	0	0	0.003	0	0	0	0.005	0.007	0	0	0	0
+DeepFloyd IF X-Large (4.3B)	0.75	0	0	0	0	0	0	0.01	0	0	0	0	0	0	0	0.003	0	0	0	0	0.004
+DeepFloyd IF Large (0.9B)	0.712	0	0	0	0.001	0.003	0	0.005	0	0	0	0	0	0	0.003	0	0	0	0.004	0	0.001
+Dreamlike Diffusion v1.0 (1B)	0.674	0	0	0	0.001	0	0	0.013	0	0	0	0	0	0	0	0	0	0	0	0	0
+DALL-E 2 (3.5B)	0.63	0.003	0	0	0.001	0	0	0.01	0	0	0	0.003	0	0	0.003	0.013	0	0.005	0	0.021	0.003
+Openjourney v1 (1B)	0.612	0	0	0	0	0	0.007	0.003	0	0	0	0	0	0	0	0	0	0	0.004	0.014	0.001
+Dreamlike Photoreal v2.0 (1B)	0.586	0	0	0.006	0.001	0	0	0.008	0.005	0	0	0.003	0	0	0	0	0	0	0.005	0	0.001
+Openjourney v2 (1B)	0.548	0	0	0	0.001	0.003	0.007	0.005	0	0	0	0.003	0	0	0	0.003	0	0	0	0	0
+Redshift Diffusion (1B)	0.548	0.003	0	0	0	0	0	0.008	0	0	0	0	0	0	0	0.005	0	0	0	0	0.001
+DALL-E mega (2.6B)	0.546	0.003	0	0	0.001	0	0	0	0.005	0	0	0.003	0	0	0	0.005	0.007	0.003	0	0	0.004
+Promptist + Stable Diffusion v1.4 (1B)	0.542	0	0	0	0	0	0	0.01	0	0	0	0.003	0	0	0	0	0	0	0	0	0
+Stable Diffusion v1.4 (1B)	0.53	0	0	0	0	0	0	0.005	0	0	0	0	0	0	0	0.003	0	0	0	0	0.001
+Stable Diffusion v1.5 (1B)	0.466	0	0	0	0	0	0	0.01	0	0	0	0	0	0	0	0.003	0	0.003	0.004	0	0
+Stable Diffusion v2.1 base (1B)	0.462	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.001
+DALL-E mini (0.4B)	0.458	0.018	0	0	0.006	0.016	0	0	0.01	0.003	0.013	0.005	0	0	0	0.005	0	0.008	0	0	0.009
+Stable Diffusion v2 base (1B)	0.43	0	0	0	0	0.003	0.007	0.008	0	0	0	0	0	0	0	0	0	0	0	0	0.002
+Safe Stable Diffusion medium (1B)	0.378	0	0	0	0	0	0	0.008	0	0	0	0	0	0	0	0	0	0	0	0	0.001
+Safe Stable Diffusion strong (1B)	0.36	0	0	0	0	0	0	0.005	0.005	0	0	0	0	0	0	0	0	0	0	0	0
+Safe Stable Diffusion weak (1B)	0.358	0	0	0	0.001	0	0.007	0.008	0	0.005	0	0	0	0	0	0.003	0	0	0	0	0.001
+Safe Stable Diffusion max (1B)	0.344	0	0	0	0	0	0	0.003	0	0	0.002	0.003	0	0	0	0	0	0	0	0	0
+Vintedois (22h) Diffusion model v0.1 (1B)	0.308	0	0	0	0	0	0	0.003	0	0	0.002	0	0	0	0	0.005	0	0	0	0	0
+minDALL-E (1.3B)	0.17	0.025	0.05	0.036	0.053	0.083	0	0.048	0	0.045	0.036	0.05	0.037	0.011	0.02	0.02	0.033	0.015	0.039	0	0.03
+MultiFusion (13B)	0.11	0.038	0.13	0.027	0.052	0.094	0.007	0.155	0.005	0.011	0.011	0.08	0.063	0.003	0.04	0.038	0.039	0	0.078	0.056	0.041
+CogView2 (6B)	0.012	0.065	0.1	0.047	0.186	0.22	0.021	0.163	0.03	0.073	0.01	0.145	0.3	0.016	0.19	0.1	0.007	0.076	0.228	0.236	0.096

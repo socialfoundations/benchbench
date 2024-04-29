@@ -1,0 +1,27 @@
+Model/adapter	Mean win rate ↑ [ sort ]	MS-COCO (base) - Blacked out frac ↓ [ sort ]	Caltech-UCSD Birds-200-2011 - Blacked out frac ↓ [ sort ]	DrawBench (image quality categories) - Blacked out frac ↓ [ sort ]	PartiPrompts (image quality categories) - Blacked out frac ↓ [ sort ]	dailydall.e - Blacked out frac ↓ [ sort ]	Landing Page - Blacked out frac ↓ [ sort ]	Logos - Blacked out frac ↓ [ sort ]	Magazine Cover Photos - Blacked out frac ↓ [ sort ]	Common Syntactic Processes - Blacked out frac ↓ [ sort ]	DrawBench (reasoning categories) - Blacked out frac ↓ [ sort ]	PartiPrompts (reasoning categories) - Blacked out frac ↓ [ sort ]	Relational Understanding - Blacked out frac ↓ [ sort ]	Detection (PaintSkills) - Blacked out frac ↓ [ sort ]	Winoground - Blacked out frac ↓ [ sort ]	PartiPrompts (knowledge categories) - Blacked out frac ↓ [ sort ]	DrawBench (knowledge categories) - Blacked out frac ↓ [ sort ]	TIME's most significant historical figures - Blacked out frac ↓ [ sort ]	Demographic Stereotypes - Blacked out frac ↓ [ sort ]	Mental Disorders - Blacked out frac ↓ [ sort ]	Inappropriate Image Prompts (I2P) - Blacked out frac ↓ [ sort ]
+MultiFusion (13B)	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+GigaGAN (1B)	0.96	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DALL-E 2 (3.5B)	0.92	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Lexica Search with Stable Diffusion v1.5 (1B)	0.88	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DeepFloyd IF Medium (0.4B)	0.84	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DeepFloyd IF Large (0.9B)	0.8	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DeepFloyd IF X-Large (4.3B)	0.76	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+minDALL-E (1.3B)	0.72	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DALL-E mini (0.4B)	0.68	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DALL-E mega (2.6B)	0.614	0	0	0	0	0.003	0	0.003	0	0	0	0	0	0	0	0	0	0	0	0	0
+CogView2 (6B)	0.604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Dreamlike Photoreal v2.0 (1B)	0.564	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Dreamlike Diffusion v1.0 (1B)	0.524	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Stable Diffusion v2 base (1B)	0.446	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Stable Diffusion v2.1 base (1B)	0.406	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Openjourney v1 (1B)	0.278	0.005	0	0.051	0.01	0.003	0	0.018	0.01	0.021	0.017	0.03	0.01	0.001	0.01	0	0.007	0.02	0	0	0.089
+Safe Stable Diffusion strong (1B)	0.272	0.003	0	0.01	0.006	0	0.007	0.008	0.005	0.006	0.004	0.025	0	0.001	0.008	0.005	0.007	0.028	0	0	0.077
+Safe Stable Diffusion medium (1B)	0.254	0	0	0.015	0.005	0.003	0	0.015	0.01	0.003	0.002	0.025	0.003	0	0.008	0.005	0.013	0.038	0.026	0	0.102
+Safe Stable Diffusion max (1B)	0.23	0	0	0.02	0.007	0.008	0	0.01	0.005	0.011	0.004	0.01	0.003	0.002	0.003	0.003	0.026	0.03	0.005	0	0.064
+Openjourney v2 (1B)	0.21	0	0.01	0.056	0.012	0	0.007	0.023	0.035	0.014	0.004	0.038	0.007	0.001	0.018	0	0.033	0.025	0.005	0	0.102
+Redshift Diffusion (1B)	0.208	0.013	0	0.066	0.02	0.011	0	0.01	0.005	0.022	0.027	0.025	0.023	0.004	0.01	0	0.033	0.008	0.005	0	0.088
+Safe Stable Diffusion weak (1B)	0.206	0.003	0	0.025	0.009	0	0	0.02	0.025	0.009	0.002	0.05	0.003	0.002	0.01	0.003	0	0.023	0.008	0.014	0.148
+Vintedois (22h) Diffusion model v0.1 (1B)	0.178	0	0.01	0.025	0.008	0.003	0	0.015	0.01	0.023	0.021	0.025	0	0.007	0.005	0	0.007	0.025	0.008	0.014	0.121
+Stable Diffusion v1.5 (1B)	0.176	0.003	0	0.025	0.012	0.003	0	0.013	0.025	0.006	0.002	0.04	0.003	0.003	0.01	0.008	0.026	0.04	0.022	0.028	0.163
+Stable Diffusion v1.4 (1B)	0.174	0.008	0	0.035	0.01	0.003	0	0.025	0.02	0.006	0.008	0.043	0.007	0.001	0.02	0.01	0.007	0.028	0.033	0	0.177
+Promptist + Stable Diffusion v1.4 (1B)	0.096	0.018	0.03	0.05	0.018	0.005	0	0.033	0.025	0.049	0.025	0.038	0.017	0.002	0.023	0.005	0.02	0.025	0.038	0.014	0.15

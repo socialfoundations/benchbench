@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchbench"
+authors = [
+    {name = "Guanhua Zhang"},
+]
+description = "Tools for measuring sensitivity and diversity of multi-task benchmarks."
+version = "1.0.0"
+requires-python = ">=3.7"
+readme = "README.md"
+license = {text = "MIT"}
+classifiers=[
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+        "scipy",
+        "numpy",
+        "torch",
+        "pandas",
+        "joblib",
+        "scikit-learn",
+        "zarth_utils==1.0"
+]
+
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["benchbench*"]

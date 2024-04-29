@@ -1,0 +1,27 @@
+Model/adapter	Mean win rate ↑ [ sort ]	MS-COCO (base) - Expected LPIPS score ↓ [ sort ]	MS-COCO (base) - Expected Multi-Scale SSIM ↑ [ sort ]	MS-COCO (base) - Expected PSNR ↑ [ sort ]	MS-COCO (base) - Expected UIQI ↑ [ sort ]	Caltech-UCSD Birds-200-2011 - Expected LPIPS score ↓ [ sort ]	Caltech-UCSD Birds-200-2011 - Expected Multi-Scale SSIM ↑ [ sort ]	Caltech-UCSD Birds-200-2011 - Expected PSNR ↑ [ sort ]	Caltech-UCSD Birds-200-2011 - Expected UIQI ↑ [ sort ]	Winoground - Expected LPIPS score ↓ [ sort ]	Winoground - Expected Multi-Scale SSIM ↑ [ sort ]	Winoground - Expected PSNR ↑ [ sort ]	Winoground - Expected UIQI ↑ [ sort ]
+Redshift Diffusion (1B)	0.863	0.739	0.07	9.386	0.003	0.765	0.108	10.695	0.002	0.752	0.082	8.727	0.005
+Dreamlike Photoreal v2.0 (1B)	0.7	0.733	0.054	8.757	0.003	0.774	0.093	10.868	0.001	0.75	0.058	8.441	0.003
+DALL-E mini (0.4B)	0.663	0.741	0.084	8.677	0.003	0.776	0.112	10.649	0.001	0.774	0.085	7.953	0.003
+Dreamlike Diffusion v1.0 (1B)	0.637	0.731	0.051	8.746	0.002	0.765	0.106	10.484	0.001	0.757	0.054	8.201	0.003
+Stable Diffusion v2 base (1B)	0.627	0.735	0.062	8.573	0.002	0.774	0.087	10.706	0.001	0.768	0.064	8.185	0.002
+GigaGAN (1B)	0.57	0.737	0.079	8.466	0.003	0.748	0.073	9.285	-0.001	0.758	0.078	8.17	0.003
+Openjourney v1 (1B)	0.557	0.756	0.063	8.686	0.004	0.787	0.063	9.807	0.002	0.768	0.063	8.126	0.004
+Stable Diffusion v2.1 base (1B)	0.553	0.739	0.053	8.409	0.004	0.794	0.097	10.563	0.001	0.766	0.061	8.143	0.002
+Stable Diffusion v1.4 (1B)	0.55	0.739	0.061	8.602	0.002	0.772	0.103	10.567	0.001	0.763	0.061	7.989	0.002
+minDALL-E (1.3B)	0.533	0.738	0.082	8.27	0.001	0.781	0.109	9.44	0.001	0.75	0.089	7.703	0
+Promptist + Stable Diffusion v1.4 (1B)	0.523	0.751	0.072	9.111	0.002	0.796	0.092	9.843	-0.001	0.77	0.074	8.204	0.004
+DeepFloyd IF X-Large (4.3B)	0.503	0.741	0.081	7.985	0.003	0.803	0.089	9.314	0.001	0.763	0.084	7.843	0.003
+Stable Diffusion v1.5 (1B)	0.49	0.74	0.059	8.614	0.002	0.774	0.09	10.431	0.001	0.764	0.056	8.026	0.002
+Safe Stable Diffusion weak (1B)	0.483	0.741	0.06	8.553	0.002	0.777	0.094	10.413	0.001	0.765	0.059	8	0.002
+MultiFusion (13B)	0.477	0.733	0.056	8.749	0.002	0.769	0.082	10.097	0.001	0.756	0.053	8.116	0
+DeepFloyd IF Medium (0.4B)	0.44	0.739	0.076	8.102	0.003	0.794	0.084	9.588	0.001	0.769	0.074	7.754	0.003
+DALL-E mega (2.6B)	0.44	0.742	0.079	8.245	0.002	0.792	0.095	9.364	0.001	0.768	0.078	7.694	0.002
+DeepFloyd IF Large (0.9B)	0.433	0.743	0.072	7.857	0.003	0.804	0.089	9.609	0.001	0.762	0.073	7.8	0.002
+Lexica Search with Stable Diffusion v1.5 (1B)	0.43	0.762	0.066	9.018	0.002	0.802	0.079	9.764	0.002	0.778	0.07	8.241	0.002
+Safe Stable Diffusion medium (1B)	0.42	0.746	0.063	8.529	0.002	0.78	0.094	10.36	0.001	0.772	0.059	8.012	0.002
+DALL-E 2 (3.5B)	0.407	0.74	0.073	8.234	0.001	0.777	0.081	9.111	0.001	0.744	0.077	7.763	0.002
+CogView2 (6B)	0.4	0.755	0.084	8.307	0.001	0.783	0.113	9.198	-0.001	0.759	0.084	7.613	0.001
+Openjourney v2 (1B)	0.38	0.743	0.06	8.346	0.002	0.775	0.09	9.901	0	0.763	0.061	7.998	0.001
+Vintedois (22h) Diffusion model v0.1 (1B)	0.363	0.757	0.051	8.101	0.003	0.788	0.095	9.588	0.002	0.777	0.054	7.675	0.004
+Safe Stable Diffusion strong (1B)	0.297	0.75	0.059	8.403	0.001	0.79	0.085	10.2	0.001	0.774	0.063	7.903	0.001
+Safe Stable Diffusion max (1B)	0.26	0.759	0.06	8.26	0.002	0.802	0.085	9.913	0	0.786	0.069	7.685	0.002

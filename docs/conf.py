@@ -24,7 +24,7 @@ extensions = [
     'sphinx.ext.ifconfig',  # include stuff based on configuration
     'sphinx.ext.viewcode',  # add source code
     'myst_parser',  # add MD files
-    'sphinxcontrib.napoleon'  # Google style doc
+    'sphinx.ext.napoleon'  # Google style doc
 ]
 
 templates_path = ['_templates']

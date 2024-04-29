@@ -25,7 +25,7 @@ jobs:
       - name: Install Sphinx and dependencies
         run: |
           pip install .
-          pip install -r requirements/docs.txt
+          pip install sphinx sphinx_rtd_theme sphinx-autopackagesummary myst-parser sphinx-copybutton readthedocs-sphinx-search nbsphinx sphinx_gallery numpydoc sphinx-autodoc-typehints sphinxcontrib-napoleon
 
       - name: Install pandoc (external dependency)
         run: |

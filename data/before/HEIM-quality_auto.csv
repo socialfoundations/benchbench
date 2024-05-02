@@ -1,0 +1,6 @@
+Model,Rank,WinRate,MS-COCO (base) - Expected LPIPS score ↓ [ sort ],MS-COCO (base) - Expected Multi-Scale SSIM ↑ [ sort ],MS-COCO (base) - Expected PSNR ↑ [ sort ],MS-COCO (base) - Expected UIQI ↑ [ sort ],Caltech-UCSD Birds-200-2011 - Expected LPIPS score ↓ [ sort ],Caltech-UCSD Birds-200-2011 - Expected Multi-Scale SSIM ↑ [ sort ],Caltech-UCSD Birds-200-2011 - Expected PSNR ↑ [ sort ],Caltech-UCSD Birds-200-2011 - Expected UIQI ↑ [ sort ],Winoground - Expected LPIPS score ↓ [ sort ],Winoground - Expected Multi-Scale SSIM ↑ [ sort ],Winoground - Expected PSNR ↑ [ sort ],Winoground - Expected UIQI ↑ [ sort ]
+Redshift Diffusion (1B),1.0,0.5666666666666667,-0.739,0.07,9.386,0.003,-0.765,0.108,10.695,0.002,-0.752,0.082,8.727,0.005
+Dreamlike Photoreal v2.0 (1B),2.0,0.3833333333333334,-0.733,0.054,8.757,0.003,-0.774,0.093,10.868,0.001,-0.75,0.058,8.441,0.003
+DALL-E mini (0.4B),3.0,0.2833333333333333,-0.741,0.084,8.677,0.003,-0.776,0.112,10.649,0.001,-0.774,0.085,7.953,0.003
+Dreamlike Diffusion v1.0 (1B),4.0,0.2666666666666667,-0.731,0.051,8.746,0.002,-0.765,0.106,10.484,0.001,-0.757,0.054,8.201,0.003
+GigaGAN (1B),5.0,0.2333333333333333,-0.737,0.079,8.466,0.003,-0.748,0.073,9.285,-0.001,-0.758,0.078,8.17,0.003

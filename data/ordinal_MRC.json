@@ -1,0 +1,147 @@
+{
+    "data": [
+        {
+            "label": "BigCode",
+            "data": [
+                {
+                    "x": 0.07,
+                    "y": 0.14,
+                    "url": "benchmark_detail.html?bench=BigCode"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HELM-accuracy",
+            "data": [
+                {
+                    "x": 0.27,
+                    "y": 0.67,
+                    "url": "benchmark_detail.html?bench=HELM-accuracy"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HELM-fairness",
+            "data": [
+                {
+                    "x": 0.30,
+                    "y": 0.58,
+                    "url": "benchmark_detail.html?bench=HELM-fairness"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HELM-robustness",
+            "data": [
+                {
+                    "x": 0.28,
+                    "y": 0.58,
+                    "url": "benchmark_detail.html?bench=HELM-robustness"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-alignment_auto",
+            "data": [
+                {
+                    "x": 0.24,
+                    "y": 0.50,
+                    "url": "benchmark_detail.html?bench=HEIM-alignment_auto"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-quality_auto",
+            "data": [
+                {
+                    "x": 0.82,
+                    "y": 0.25,
+                    "url": "benchmark_detail.html?bench=HEIM-quality_auto"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-aesthetics_auto",
+            "data": [
+                {
+                    "x": 0.57,
+                    "y": 0.50,
+                    "url": "benchmark_detail.html?bench=HEIM-aesthetics_auto"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-alignment_human",
+            "data": [
+                {
+                    "x": 0.71,
+                    "y": 0.25,
+                    "url": "benchmark_detail.html?bench=HEIM-alignment_human"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-nudity",
+            "data": [
+                {
+                    "x": 0.76,
+                    "y": 0.62,
+                    "url": "benchmark_detail.html?bench=HEIM-nudity"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-quality_human",
+            "data": [
+                {
+                    "x": 0.26,
+                    "y": 0.25,
+                    "url": "benchmark_detail.html?bench=HEIM-quality_human"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "HEIM-aesthetics_human",
+            "data": [
+                {
+                    "x": 0.44,
+                    "y": 0.25,
+                    "url": "benchmark_detail.html?bench=HEIM-aesthetics_human"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "Random",
+            "data": [
+                {
+                    "x": 0.99,
+                    "y": 0.99,
+                    "url": "#"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "Constant",
+            "data": [
+                {
+                    "x": 0.00,
+                    "y": 0.00,
+                    "url": "#"
+                }
+            ],
+            "pointRadius": 10
+        }
+    ]
+}

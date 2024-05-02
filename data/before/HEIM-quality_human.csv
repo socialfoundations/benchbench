@@ -1,0 +1,6 @@
+Model,Rank,WinRate,MS-COCO (base) - Photorealism - generated (human) ↑ [ sort ],MS-COCO (fairness - gender) - Photorealism - generated (human) ↑ [ sort ],MS-COCO (fairness - AAVE dialect) - Photorealism - generated (human) ↑ [ sort ],MS-COCO (robustness) - Photorealism - generated (human) ↑ [ sort ],MS-COCO (Chinese) - Photorealism - generated (human) ↑ [ sort ],MS-COCO (Hindi) - Photorealism - generated (human) ↑ [ sort ],MS-COCO (Spanish) - Photorealism - generated (human) ↑ [ sort ]
+Dreamlike Photoreal v2.0 (1B),1.0,0.6,2.619,2.694,2.65,2.726,2.76,2.628,2.894
+Safe Stable Diffusion weak (1B),2.0,0.42857142857142855,2.611,2.647,2.643,2.637,2.676,2.504,2.952
+DALL-E 2 (3.5B),3.0,0.4,2.621,2.632,2.411,2.552,2.54,3.769,2.935
+Safe Stable Diffusion strong (1B),4.0,0.34285714285714286,2.286,2.332,2.526,2.807,2.936,2.684,2.712
+Stable Diffusion v1.5 (1B),5.0,0.22857142857142856,2.375,2.392,2.551,2.502,2.7,2.516,2.85

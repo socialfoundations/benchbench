@@ -1,0 +1,114 @@
+{
+    "data": [
+        {
+            "label": "GLUE",
+            "data": [
+                {
+                    "x": 0.16,
+                    "y": 0.12,
+                    "url": "benchmark_detail.html?bench=GLUE"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "SuperGLUE",
+            "data": [
+                {
+                    "x": 0.13,
+                    "y": 0.11,
+                    "url": "benchmark_detail.html?bench=SuperGlue"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "OpenLLM",
+            "data": [
+                {
+                    "x": 0.82,
+                    "y": 0.46,
+                    "url": "benchmark_detail.html?bench=OpenLLM"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "MMLU",
+            "data": [
+                {
+                    "x": 0.53,
+                    "y": 0.34,
+                    "url": "benchmark_detail.html?bench=MMLU"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "BigBenchHard",
+            "data": [
+                {
+                    "x": 0.32,
+                    "y": 0.25,
+                    "url": "benchmark_detail.html?bench=BigBenchHard"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "MTEB",
+            "data": [
+                {
+                    "x": 0.08,
+                    "y": 0.18,
+                    "url": "benchmark_detail.html?bench=MTEB"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "VTAB",
+            "data": [
+                {
+                    "x": 0.19,
+                    "y": 0.07,
+                    "url": "benchmark_detail.html?bench=VTAB"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "ImageNet",
+            "data": [
+                {
+                    "x": 0.01,
+                    "y": 0.02,
+                    "url": "#"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "Random",
+            "data": [
+                {
+                    "x": 0.99,
+                    "y": 0.49,
+                    "url": "#"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
+            "label": "Constant",
+            "data": [
+                {
+                    "x": 0.00,
+                    "y": 0.00,
+                    "url": "#"
+                }
+            ],
+            "pointRadius": 10
+        }
+    ]
+}

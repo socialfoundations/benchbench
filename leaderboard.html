@@ -10,6 +10,12 @@
 
 </head>
 
+
+
+
+
+
+
 <body class="hero-anime">
 
     <div class="navigation-wrap bg-light start-header start-style">
@@ -73,33 +79,31 @@
     </div>
 
 
+
     <div class="section full-height">
         <div class="absolute-center">
             <div class="section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12">
-                            <h1>
-                                <!-- <span>B</span><span>e</span><span>n</span><span>c</span><span>h</span> -->
-                                <span style="color: #8DB1CD;">B</span><span style="color: #8DB1CD;">e</span><span
-                                    style="color: #8DB1CD;">n</span><span style="color: #8DB1CD;">c</span><span
-                                    style="color: #8DB1CD;">h</span><span style="color: #D08983;">B</span><span
-                                    style="color: #D08983;">e</span><span style="color: #D08983;">n</span><span
-                                    style="color: #D08983;">c</span><span style="color: #D08983;">h</span>
-                            </h1>
-                            <p style="font-size: 20px;">
-                                A <span style="color:#8DB1CD"><u><strong>Bench</strong></u></span>mark for evaluating
-                                the sensitivity and
-                                diversity
-                                of multi-task <span style="color:#D08983"><u><strong>Bench</strong></u></span>marks.
+                        <div class="col-12 text-center">
+                            <h2>Cardinal <strong><span style="color: #8DB1CD;">Bench</span><span
+                                        style="color:#D08983;">Bench</span></strong></h2>
+                            <p style="color: grey;">
+                                Click on the legend to show/hide the corresponding benchmark.
+                                <br>
+                                Clicking on the point to show more details about the benchmark sensitivity.
                             </p>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <p>
-                                <span><a href="https://sf.is.mpg.de/"><img src="assets/mpi.png" height="130"></a></span>
-                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <canvas id="myChart1" width="100" height="400"></canvas>
+                        </div>
+                        <div class="col-6">
+                            <canvas id="myChart2" width="100" height="400"></canvas>
                         </div>
                     </div>
                 </div>
@@ -112,51 +116,103 @@
             <div class="section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12" style="color: #444444;">
-                            <h1 style="font-size: 40px; color: #777777;">
-                                Overview
-                            </h1>
-                            <br>
-                            <br>
-                            <div style="font-size: 20px; text-align: left;">
-                                We examine multi-task benchmarks in machine learning through the lens of social choice
-                                theory.
-                                We draw an analogy between benchmarks and electoral systems, where models are candidates
-                                and tasks are voters.
-                                Benchmarks are accordingly divided into two classes:
-                                <ul style="margin-top: 10px;">
-                                    <li> <strong>Cardinal benchmarks</strong> that aggregate numerical scores into one
-                                        model ranking</li>
-                                    <li> <strong>Ordinal benchmarks</strong> that aggregate rankings for each task.</li>
-                                </ul>
+                        <div class="col-12 text-center">
+                            <h2>Ordinal <strong><span style="color: #8DB1CD;">Bench</span><span
+                                        style="color:#D08983;">Bench</span></strong></h2>
+                            <p style="color: grey;">
+                                Click on the legend to show/hide the corresponding benchmark.
                                 <br>
-                                Inspired by Arrow's theorem, we introduce two quantitative measures of benchmarks:
-                                <ul style="margin-top: 10px;">
-                                    <li>
-                                        <strong>Sensitivity</strong> that quantifies the impact that irrelevant changes
-                                        to tasks have on a benchmark.
-                                    </li>
-                                    <li>
-                                        <strong>Diversity</strong> that captures the degree of disagreement in model
-                                        rankings across tasks.
-                                    </li>
-                                </ul>
-                                <br>
-                                We maintain a benchmark for evaluating the sensitivity and diversity of multi-task
-                                benchmarks, named BenchBench.
-                                Initially, we present results on seven cardinal benchmarks
-                                and eleven ordinal benchmarks, which demonstrate a clear trade-off between diversity
-                                and stability.
-                                <strong>The more diverse a multi-task benchmark, the more sensitive to trivial
-                                    changes it
-                                    is.</strong>
-                            </div>
+                                Clicking on the point to show more details about the benchmark sensitivity.
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <canvas id="myChart3" width="100" height="400"></canvas>
+                        </div>
+                        <div class="col-6">
+                            <canvas id="myChart4" width="100" height="400"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx1 = document.getElementById('myChart1').getContext('2d');
+        var scatterChart1;
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+        var scatterChart2;
+        var ctx3 = document.getElementById('myChart3').getContext('2d');
+        var scatterChart3;
+        var ctx4 = document.getElementById('myChart4').getContext('2d');
+        var scatterChart4;
+
+        function loadData(ctx, url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var scatterChart = new Chart(ctx, {
+                        type: 'scatter',
+                        data: {
+                            datasets: data.data.map(dataset => ({
+                                label: dataset.label,
+                                data: dataset.data,
+                                pointRadius: dataset.pointRadius
+                            })),
+                            backgroundColor: 'rgb(255, 99, 132)',
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            onClick: (event, elements) => {
+                                if (elements.length > 0) {
+                                    var firstElement = elements[0];
+                                    var datasetIndex = firstElement.datasetIndex;
+                                    var dataIndex = firstElement.index;
+                                    var url = scatterChart.data.datasets[datasetIndex].data[dataIndex].url;
+                                    window.open(url, '_blank');
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    title: {
+                                        display: true,
+                                        text: 'Diversity (W)'
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: ctx === ctx2 || ctx === ctx4 ? 'Sensitivity (MRC)' : 'Sensitivity (tau)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+        }
+
+        // loadData(ctx1, 'http://127.0.0.1:8080/data/cardinal_tau.json');
+        // loadData(ctx2, 'http://127.0.0.1:8080/data/cardinal_MRC.json');
+        // loadData(ctx3, 'http://127.0.0.1:8080/data/ordinal_tau.json');
+        // loadData(ctx4, 'http://127.0.0.1:8080/data/ordinal_MRC.json');
+        loadData(ctx1, './data/cardinal_tau.json');
+        loadData(ctx2, './data/cardinal_MRC.json');
+        loadData(ctx3, './data/ordinal_tau.json');
+        loadData(ctx4, './data/ordinal_MRC.json');
+    </script>
+
+
 
 
 
@@ -196,4 +252,13 @@
         })(jQuery); 
     </script>
 
+
+
+
+
+
+
+
 </body>
+
+</html>

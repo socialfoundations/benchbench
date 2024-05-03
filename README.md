@@ -1,14 +1,23 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/benchbench-horizontal.png"  width="50%" />
+<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/benchbench-horizontal.png"  width="66%" />
 </p>
 
 **BenchBench** is a Python package that provides a suite of tools to evaluate multi-task benchmarks focusing on
-diversity and sensitivity against irrelevant variations, such as label noise injection and the addition of irrelevant
-candidate models. This package facilitates comprehensive analysis of multi-task benchmarks through a social choice lens,
-exposing the fundamental trade-off between diversity and stability in both cardinal and ordinal benchmarks.
+**task diversity** and **sensitivity to irrelevant changes**. 
 
-For more information, including the motivations behind the measures and our empirical findings, please
-see [our paper](https://github.com/socialfoundations/benchbench).
+Research shows that for all multi-task benchmarks there is a trade-off between task diversity and sensitivity. The more diverse a benchmark, the more sensitive its ranking is to irrelevant changes. Irrelevant changes 
+are things like introducing weak models, or changing the metric in ways that shouldn't matter.
+
+Please see [our paper](https://github.com/socialfoundations/benchbench) for all relevant background. We applied BenchBench to many existing multi-task benchmarks. Cite as:
+
+```
+@inproceedings{zhang2024inherent,
+  title={Inherent Trade-Offs between Diversity and Stability in Multi-Task Benchmarks},
+  author={Guanhua Zhang and Moritz Hardt},
+  booktitle={International Conference on Machine Learning},
+  year={2024}
+}
+```
 
 ## Quick Start
 

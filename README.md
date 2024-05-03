@@ -56,10 +56,14 @@ sensitivity = get_sensitivity(data, cols)
 To use your own benchmark, you just need to provide a pandas DataFrame and a list of columns indicating the tasks.
 Check the [documentation](https://socialfoundations.github.io/benchbench) for more details.
 
-## Reproduce the Paper
+## Reproduce the results from our paper
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/banner.png" height="400" width="600">
+<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/banner.png" width="100%" />
 </p>
 
-One could check out [cardinal.ipynb](https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/cardinal.ipynb), [ordinal.ipynb](https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/ordinal.ipynb) and [banner.ipynb](https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/banner.ipynb) to reproduce our results using Google Colab with one click.
+You can reproduce the figures from our paper using the following Colabs:
+
+* [cardinal.ipynb](https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/cardinal.ipynb)
+* [ordinal.ipynb](https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/ordinal.ipynb) 
+* [banner.ipynb](https://githubtocolab.com/socialfoundations/benchbench/blob/main/examples/banner.ipynb) 

@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/logo.jpg" height="400" width="600">
+<img src="https://raw.githubusercontent.com/socialfoundations/benchbench/main/assets/benchbench-horizontal.png"  width="50%" />
 </p>
 
 **BenchBench** is a Python package that provides a suite of tools to evaluate multi-task benchmarks focusing on

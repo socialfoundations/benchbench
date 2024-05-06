@@ -10,7 +10,7 @@ are things like introducing weak models, or changing the metric in ways that sho
 
 Based on BenchBench, we're maintaining a living [benchmark of multi-task benchmarks](https://socialfoundations.github.io/benchbench/). Visit the project page to see the results or contribute your own benchmark.
 
-Please see [our paper](https://github.com/socialfoundations/benchbench) for all relevant background and scientific results. Cite as:
+Please see [our paper](https://arxiv.org/pdf/2405.01719) for all relevant background and scientific results. Cite as:
 
 ```
 @inproceedings{zhang2024inherent,

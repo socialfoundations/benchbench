@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>benchbench.measures.cardinal &#8212; BenchBench  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for benchbench.measures.cardinal</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">SGD</span>
+
+<span class="kn">from</span> <span class="nn">..utils.base</span> <span class="kn">import</span> <span class="n">rankdata</span>
+<span class="kn">from</span> <span class="nn">..utils.metric</span> <span class="kn">import</span> <span class="n">get_rank_diff</span><span class="p">,</span> <span class="n">get_rank_variance</span>
+
+
+<div class="viewcode-block" id="appr_rank_diff"><a class="viewcode-back" href="../../../measures.html#benchbench.measures.cardinal.appr_rank_diff">[docs]</a><span class="k">def</span> <span class="nf">appr_rank_diff</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">old_rank</span><span class="p">,</span> <span class="n">use_weighted_loss</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Approximate the rank difference between the old rank and the new rank.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        score(np.array): Scores for all models across all tasks.</span>
+<span class="sd">        old_rank(np.array): Original rank.</span>
+<span class="sd">        use_weighted_loss(bool): Whether use weighted loss.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        torch.Tensor: The loss.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">score</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">score</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">old_rank</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">old_rank</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">use_weighted_loss</span><span class="p">:</span>
+                    <span class="c1"># this weight would encourage larger rank distance to get changed first</span>
+                    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span> <span class="o">+</span> <span class="p">(</span><span class="n">old_rank</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">old_rank</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span>
+                        <span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">0.0</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss</span></div>
+
+
+<div class="viewcode-block" id="get_sensitivity"><a class="viewcode-back" href="../../../measures.html#benchbench.measures.cardinal.get_sensitivity">[docs]</a><span class="k">def</span> <span class="nf">get_sensitivity</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">cols</span><span class="p">,</span>
+    <span class="n">min_value</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">lr</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">num_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">stop_threshold</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">normalize_epsilon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_weighted_loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the sensitivity for a given benchmark.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data(pd.DataFrame): Each row represents a model, each column represents a task.</span>
+<span class="sd">        cols(list): The column names of the tasks.</span>
+<span class="sd">        min_value(float): Min values for epsilon.</span>
+<span class="sd">        lr(float): Learning rate for optimization.</span>
+<span class="sd">        num_steps(int): Number of steps for optimization.</span>
+<span class="sd">        stop_threshold(float): Stop if the loss change is smaller than this value.</span>
+<span class="sd">        normalize_epsilon(bool): Whether normalize epsilon by std.</span>
+<span class="sd">        use_weighted_loss(bool): Whether use weighted approximation loss, if None, use both and return the better one.</span>
+<span class="sd">        return_weight(bool): Whether return alpha.</span>
+<span class="sd">        verbose(bool): Whether output logs.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: If return_weight is True, return ((tau, MRC), alpha); else return (tau, MRC).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_weighted_loss</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">get_sensitivity</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">cols</span><span class="p">,</span>
+            <span class="n">min_value</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">stop_threshold</span><span class="p">,</span>
+            <span class="n">normalize_epsilon</span><span class="p">,</span>
+            <span class="n">use_weighted_loss</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">return_weight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">get_sensitivity</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">cols</span><span class="p">,</span>
+            <span class="n">min_value</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">stop_threshold</span><span class="p">,</span>
+            <span class="n">normalize_epsilon</span><span class="p">,</span>
+            <span class="n">use_weighted_loss</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">return_weight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_weight</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="n">b</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">data_std</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_std</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_std</span><span class="p">)</span> <span class="k">if</span> <span class="n">_std</span> <span class="o">&gt;</span> <span class="mf">1e-8</span><span class="p">]]</span>
+    <span class="n">orig_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">old_score</span> <span class="o">=</span> <span class="n">orig_data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">old_rank</span> <span class="o">=</span> <span class="n">rankdata</span><span class="p">(</span><span class="o">-</span><span class="n">old_score</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">)</span>
+
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">normalize_func</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+        <span class="n">w1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">w2</span> <span class="o">=</span> <span class="n">w1</span> <span class="o">+</span> <span class="n">min_value</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">)</span>
+        <span class="n">w3</span> <span class="o">=</span> <span class="n">w2</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">w3</span>
+
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">([</span><span class="n">weight</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+    <span class="n">last_loss</span> <span class="o">=</span> <span class="mh">0x3F3F3F3F</span>
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">norm_weight</span> <span class="o">=</span> <span class="n">normalize_func</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">norm_weight</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">appr_rank_diff</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">old_rank</span><span class="p">,</span> <span class="n">use_weighted_loss</span><span class="o">=</span><span class="n">use_weighted_loss</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="n">last_loss</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">stop_threshold</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">last_loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step </span><span class="si">%d</span><span class="s2">, Loss = </span><span class="si">%.2lf</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+
+    <span class="n">norm_weight</span> <span class="o">=</span> <span class="n">normalize_func</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">normalize_epsilon</span><span class="p">:</span>
+        <span class="n">norm_weight</span> <span class="o">=</span> <span class="n">norm_weight</span> <span class="o">/</span> <span class="n">orig_data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">norm_weight</span> <span class="o">=</span> <span class="n">norm_weight</span> <span class="o">/</span> <span class="n">norm_weight</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">new_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">orig_data</span> <span class="o">*</span> <span class="n">norm_weight</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">new_rank</span> <span class="o">=</span> <span class="n">rankdata</span><span class="p">(</span><span class="o">-</span><span class="n">new_score</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">)</span>
+    <span class="n">rank_diff</span> <span class="o">=</span> <span class="n">get_rank_diff</span><span class="p">(</span><span class="n">new_rank</span><span class="p">,</span> <span class="n">old_rank</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">return_weight</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rank_diff</span><span class="p">,</span> <span class="n">norm_weight</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rank_diff</span></div>
+
+
+<div class="viewcode-block" id="get_diversity"><a class="viewcode-back" href="../../../measures.html#benchbench.measures.cardinal.get_diversity">[docs]</a><span class="k">def</span> <span class="nf">get_diversity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the diversity for a given benchmark.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data(pd.DataFrame): Each row represents a model, each column represents a task.</span>
+<span class="sd">        cols(list): The column names of the tasks.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (W, max_MRC), where max_MRC refers to max MRC over every pair of tasks.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_rank_variance</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">rankdata</span><span class="p">(</span><span class="o">-</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">]</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">BenchBench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../measures.html">Measures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">Utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Guanhua.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

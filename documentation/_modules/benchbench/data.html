@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>benchbench.data &#8212; BenchBench  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for benchbench.data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.bbh</span> <span class="kn">import</span> <span class="n">load_bbh</span>
+<span class="kn">from</span> <span class="nn">.bigcode</span> <span class="kn">import</span> <span class="n">load_bigcode</span>
+<span class="kn">from</span> <span class="nn">.glue</span> <span class="kn">import</span> <span class="n">load_glue</span>
+<span class="kn">from</span> <span class="nn">.heim</span> <span class="kn">import</span> <span class="n">load_heim</span>
+<span class="kn">from</span> <span class="nn">.helm</span> <span class="kn">import</span> <span class="n">load_helm</span>
+<span class="kn">from</span> <span class="nn">.imagenet</span> <span class="kn">import</span> <span class="n">load_imagenet</span>
+<span class="kn">from</span> <span class="nn">.mmlu</span> <span class="kn">import</span> <span class="n">load_mmlu</span>
+<span class="kn">from</span> <span class="nn">.mteb</span> <span class="kn">import</span> <span class="n">load_mteb</span>
+<span class="kn">from</span> <span class="nn">.openllm</span> <span class="kn">import</span> <span class="n">load_openllm</span>
+<span class="kn">from</span> <span class="nn">.superglue</span> <span class="kn">import</span> <span class="n">load_superglue</span>
+<span class="kn">from</span> <span class="nn">.vtab</span> <span class="kn">import</span> <span class="n">load_vtab</span>
+<span class="kn">from</span> <span class="nn">.dummy</span> <span class="kn">import</span> <span class="n">load_random_benchmark</span><span class="p">,</span> <span class="n">load_constant_benchmark</span>
+<span class="kn">from</span> <span class="nn">..utils.win_rate</span> <span class="kn">import</span> <span class="n">WinningRate</span>
+
+<span class="n">cardinal_benchmark_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;GLUE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SuperGLUE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OpenLLM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MMLU&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BigBenchHard&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MTEB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VTAB&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordinal_benchmark_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BigCode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-accuracy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-bias&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-calibration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-fairness&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-efficiency&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-robustness&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-summarization&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HELM-toxicity&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-alignment_auto&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-nsfw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-quality_auto&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-aesthetics_auto&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-alignment_human&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-nudity&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-quality_human&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-aesthetics_human&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-black_out&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HEIM-originality&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="load_cardinal_benchmark"><a class="viewcode-back" href="../../data.html#benchbench.data.load_cardinal_benchmark">[docs]</a><span class="k">def</span> <span class="nf">load_cardinal_benchmark</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">do_rerank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a cardinal benchmark.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_name(str): Name for the benchmark.</span>
+<span class="sd">        do_rerank(bool): Whether re-rank the data based on the average score.</span>
+<span class="sd">        **kwargs: Other arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple:</span>
+<span class="sd">            pd.DataFrame: data.</span>
+<span class="sd">            list: cols.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;GLUE&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_glue</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;SuperGLUE&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_superglue</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;OpenLLM&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_openllm</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;MMLU&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_mmlu</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;BigBenchHard&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_bbh</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;MTEB&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_mteb</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;VTAB&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_vtab</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;ImageNet&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_imagenet</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;Random&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_random_benchmark</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;Constant&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_constant_benchmark</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+
+    <span class="k">if</span> <span class="n">do_rerank</span><span class="p">:</span>
+        <span class="n">avg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">avg</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span></div>
+
+
+<div class="viewcode-block" id="load_ordinal_benchmark"><a class="viewcode-back" href="../../data.html#benchbench.data.load_ordinal_benchmark">[docs]</a><span class="k">def</span> <span class="nf">load_ordinal_benchmark</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">do_rerank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load an ordinal benchmark.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_name(str): name for the benchmark</span>
+<span class="sd">        do_rerank(bool): whether re-rank the data based on the winning rate</span>
+<span class="sd">        **kwargs: other arguments</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple:</span>
+<span class="sd">            pd.DataFrame: data</span>
+<span class="sd">            list: cols</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">dataset_name</span><span class="p">,</span> <span class="n">subset_name</span> <span class="o">=</span> <span class="n">dataset_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">subset_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;HELM&quot;</span><span class="p">:</span>
+        <span class="n">subset_name</span> <span class="o">=</span> <span class="s2">&quot;accuracy&quot;</span> <span class="k">if</span> <span class="n">subset_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">subset_name</span>
+        <span class="k">assert</span> <span class="n">subset_name</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;bias&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;calibration&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fairness&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;efficiency&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;robustness&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;summarization&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;toxicity&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_helm</span><span class="p">(</span><span class="n">subset_name</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;HEIM&quot;</span><span class="p">:</span>
+        <span class="n">subset_name</span> <span class="o">=</span> <span class="s2">&quot;alignment_human&quot;</span> <span class="k">if</span> <span class="n">subset_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">subset_name</span>
+        <span class="k">assert</span> <span class="n">subset_name</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;alignment_auto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;nsfw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;quality_auto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;aesthetics_auto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;alignment_human&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;nudity&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;quality_human&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;aesthetics_human&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;black_out&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;originality&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_heim</span><span class="p">(</span><span class="n">subset_name</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;BigCode&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_bigcode</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;Random&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_random_benchmark</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">num_model</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s2">&quot;Constant&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">load_constant_benchmark</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+
+    <span class="k">if</span> <span class="n">do_rerank</span><span class="p">:</span>
+        <span class="n">wr</span> <span class="o">=</span> <span class="n">WinningRate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+        <span class="n">win_rate</span> <span class="o">=</span> <span class="n">wr</span><span class="o">.</span><span class="n">get_winning_rate</span><span class="p">()</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">win_rate</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">cols</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">BenchBench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../measures.html">Measures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Guanhua.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

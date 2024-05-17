@@ -628,3 +628,7 @@ body.dark .logo img {
     justify-content: center;
     align-items: center;
 }
+u{
+
+    text-decoration: none !important;
+}

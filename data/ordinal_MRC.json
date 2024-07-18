@@ -122,6 +122,17 @@
             "pointRadius": 10
         },
         {
+            "label": "HELM-Light",
+            "data": [
+                {
+                    "x": "0.37",
+                    "y": "0.50",
+                    "url": "benchmark_detail.html?bench=HELM-Light"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
             "label": "Random",
             "data": [
                 {

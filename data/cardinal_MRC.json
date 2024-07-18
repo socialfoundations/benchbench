@@ -78,6 +78,17 @@
             "pointRadius": 10
         },
         {
+            "label": "OpenLLM-v2",
+            "data": [
+                {
+                    "x": "0.59",
+                    "y": "0.83",
+                    "url": "benchmark_detail.html?bench=OpenLLM-v2"
+                }
+            ],
+            "pointRadius": 10
+        },
+        {
             "label": "ImageNet",
             "data": [
                 {

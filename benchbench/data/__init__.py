@@ -1,8 +1,11 @@
 import numpy as np
 
+
 from .bbh import load_bbh
 from .bigcode import load_bigcode
 from .glue import load_glue
+from .helm_lite import load_helm_lite
+from .helm_capability import load_helm_capability
 from .heim import load_heim
 from .helm import load_helm
 from .imagenet import load_imagenet
@@ -22,9 +25,11 @@ cardinal_benchmark_list = [
     "BigBenchHard",
     "MTEB",
     "VTAB",
+    "HELM-capability",
 ]
 ordinal_benchmark_list = [
     "BigCode",
+    "HELM-lite",
     "HELM-accuracy",
     "HELM-bias",
     "HELM-calibration",
@@ -60,7 +65,9 @@ def load_cardinal_benchmark(dataset_name, do_rerank=True, **kwargs):
             pd.DataFrame: data.
             list: cols.
     """
-    if dataset_name == "GLUE":
+    if dataset_name == "HELM-capability":
+        data, cols = load_helm_capability()
+    elif dataset_name == "GLUE":
         data, cols = load_glue()
     elif dataset_name == "SuperGLUE":
         data, cols = load_superglue()
@@ -112,6 +119,9 @@ def load_ordinal_benchmark(dataset_name, do_rerank=True, **kwargs):
 
     if dataset_name == "HELM":
         subset_name = "accuracy" if subset_name is None else subset_name
+        if subset_name == "lite":
+            data, cols = load_helm_lite()
+            return data, cols
         assert subset_name in [
             "accuracy",
             "bias",
